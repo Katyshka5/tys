@@ -1,24 +1,24 @@
-Перед началом установки, нужно установить Linux Oracle на VirtualBox, для этого нужно:
+Нужно установить Linux Oracle на VirtualBox
 
-◦ Иметь образ Linux
+◦ Образ Linux
 
-◦ Выделить 2+ ядер
+◦ Выделить 4 ЦП
 
-◦ Выделать 4096+ МБ оперативы
+◦ Выделить 4096+ МБ
 
 ◦ При установке ОС выбрать английский язык
 
-Переходим к установке docker с использованием grafana, вводим следующий набор команд:
+Установка docker с использованием grafana:
 
 ① `sudo yum install wget`
 
-▹ Устанавливаем утилиту wget
+▹ УтилитА wget
 
 ![image](https://github.com/user-attachments/assets/4a10e5dd-6f83-4270-8c8b-6b8c3c7751ce)
 
 ② `sudo wget -P /etc/yum.repos.d/ https://download.docker.com/linux/centos/docker-ce.repo`
 
-▹ Скачиваем файл репозитория
+▹ Файл репозитория
 
 ![image](https://github.com/user-attachments/assets/62a98b7f-769f-4a1d-9dd1-ba8b2e5f9c5b)
 
@@ -34,12 +34,11 @@
 
 ⑤ `sudo yum install curl`
 
-▹ Для этого сначала убедимся в наличие пакета curl
+▹ Убедимся в наличие пакета curl
 
 ⑥ `COMVER=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)`
 
-▹ Объявление переменной COMVER, полученной в результате curl запроса, хранящей в себе номер последней
-версии Docker Compose
+▹ Объявление переменной COMVER
 
 ![image](https://github.com/user-attachments/assets/a71b5f57-d895-4e74-9c01-aa11dacc0bd2)
 
@@ -73,19 +72,19 @@
 
 ①② `sudo mkdir -p /mnt/common_volume/swarm/grafana/config`
 
-▹ Команда создаёт полный путь /mnt/common_volume/swarm/grafana/config, включая все необходимые промежуточные каталоги, если они ещё не существуют.
+▹ Команда создаёт полный путь /mnt/common_volume/swarm/grafana/config
 
 ①③ `sudo mkdir -p /mnt/common_volume/grafana/{grafana-config,grafana-data,prometheus-data}`
 
-▹ Команда создаёт структуру каталогов для Grafana и связанных с ней компонентов, если они ещё не существуют.
+▹ Команда создаёт структуру каталогов для Grafana и связанных с ней компонентов
 
 ①④ `sudo chown -R $(id -u):$(id -g) {/mnt/common_volume/swarm/grafana/config,/mnt/common_volume/grafana}`
 
-▹ Все файлы и каталоги в указанных директориях будут переданы в собственность текущему пользователю и его группе
+▹ Все файлы и каталоги будут переданы в собственность текущему пользователю и его группе
 
 ①⑤ ` touch /mnt/common_volume/grafana/grafana-config/grafana.ini`
 
-▹ Файл grafana.ini уже существует, команда обновит его временные метки (время последнего доступа и изменения). Если файл не существует, команда создаст новый пустой файл с указанным именем по указанному пути.
+▹ Файл grafana.ini уже существует, команда обновит временные метки. Если файл не существует, команда создаст новый пустой файл с указанным именем по указанному пути
 
 ①⑥ `cp config/* /mnt/common_volume/swarm/grafana/config/`
 
@@ -93,11 +92,11 @@
 
 ①⑦ `mv grafana.yaml docker-compose.yaml `
 
-▹ Команда переименовывает файл grafana.yaml в docker-compose.yaml. Ничего не покажет, но можно проверить при помощи команды ls
+▹ Команда переименовывает файл grafana.yaml в docker-compose.yaml
 
 ①⑧ `sudo docker compose up -d`
 
-▹ Команда создает и запускает контейнеры в фоновом режиме, используя конфигурацию из файла docker-compose.yml, с правами суперпользователя.
+▹ Команда создает и запускает контейнеры в фоновом режиме с правами суперпользователя.
 
 ![image](https://github.com/user-attachments/assets/b5a2d557-f83d-48c6-946b-8cb0330de817)
 
@@ -105,13 +104,7 @@
 
 ①⑨ `sudo vi docker-compose.yaml`
 
-▹ Команда открывает файл docker-compose.yaml в текстовом редакторе vi с правами суперпользователя, что позволяет нам редактировать его содержимое.
-
-▹ Нас перекинет в текстовый редактор
-
-▹ Что-бы что-то изменить в тесковом редакторе нажмите insert на клавиатуре
-
-▹ Что бы сохранить что-то в этом документе нажимаем Esc пишем :wq! В этом текставом редакторе мы должны поставить node-exporter после services
+▹ Команда открывает файл docker-compose.yaml в текстовом редакторе vi с правами суперпользователя, что позволяет редактировать его содержимое.
 
 ![image](https://github.com/user-attachments/assets/bbeb8593-9dd2-44a0-9169-e7907f190f06)
 
@@ -155,7 +148,7 @@ Authentication
 
 VictoriaMetrics
 
-▹ Для начала изменим docker-compose.yaml
+▹ Изменим docker-compose.yaml
 
 ① `cd grafana_stack_for_docker`
 
@@ -167,13 +160,11 @@ VictoriaMetrics
 
 ![image](https://github.com/user-attachments/assets/ba87158f-2433-4c94-8353-75046110acc5)
 
-▹ В самом текстовом редакторе после prometheus вставляем
+▹ В текстовом редакторе после prometheus вставляем
 
 ![image](https://github.com/user-attachments/assets/1d92f15d-9018-4e0e-b760-7e24f1ba40ae)
 
-▹ Захом в connection
-
-▹ Там где мы писали http//:prometheus:9090 пишем http:victoriametrics:9090 И заменяем имя из "Prometheus-2" в "Vika"
+▹ Вместо http//:prometheus:9090 пишем http:victoriametrics:9090 и заменяем имя из "Prometheus-2" в "Vika"
 
 ▹ Нажимаем на dashboards add visualition выбираем "Vika"
 
