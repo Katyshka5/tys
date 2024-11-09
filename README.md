@@ -155,3 +155,56 @@ Authentication
 
 VictoriaMetrics
 
+▹ Для начала изменим docker-compose.yaml
+
+① `cd grafana_stack_for_docker`
+
+▹ Команда cd grafana_stack_for_docker изменяет текущий рабочий каталог на каталог grafana_stack_for_docker.
+
+② `sudo vi docker-compose.yaml`
+
+▹ Команда sudo открывает файл docker-compose.yaml в редакторе vi с правами суперпользователя.
+
+![image](https://github.com/user-attachments/assets/ba87158f-2433-4c94-8353-75046110acc5)
+
+▹ В самом текстовом редакторе после prometheus вставляем
+
+![image](https://github.com/user-attachments/assets/1d92f15d-9018-4e0e-b760-7e24f1ba40ae)
+
+▹ Захом в connection
+
+▹ Там где мы писали http//:prometheus:9090 пишем http:victoriametrics:9090 И заменяем имя из "Prometheus-2" в "Vika"
+
+▹ Нажимаем на dashboards add visualition выбираем "Vika"
+
+▹ Снизу меняем на "code"
+
+▹ Переходим в терминал и пишем
+
+③ `echo -e "# TYPE OILCOINT_metric1 gauge\nOILCOINT_metric1 0" | curl --data-binary @- http://localhost:8428/api/v1/import/prometheus`
+
+▹ Команда отправляет бинарные данные (например, метрики в формате Prometheus) на локальный сервер, который слушает на порту 8428.
+
+④ `curl -G 'http://localhost:8428/api/v1/query' --data-urlencode 'query=OILCOINT_metric1'`
+
+▹ Команда делает запрос к API для получения данных по метрике OILCOINT_metric1
+
+▹ Команда выводит текст, который может быть использован для определения метрики в формате, совместимом с Prometheus
+
+▹ Команда выводит информацию о типе и значении этой метрики в формате, который может быть использован системой мониторинга Prometheus.
+
+![image](https://github.com/user-attachments/assets/9daacb6b-5767-4f2e-aa12-3b97cbff4770)
+
+▹ Значение 0 меняем на любое другое
+
+▹ Копируем переменную OILCOINT_metric1 и вставляем в query
+
+▹ Нажимаем run
+
+![image](https://github.com/user-attachments/assets/5010441a-6d6c-4780-a198-2237c2ada3ea)
+
+![image](https://github.com/user-attachments/assets/85f5e435-3f7f-495e-840d-341fe72e54a1)
+
+▹ Копируем OILCOINT_metric1 и вставляем в code
+
+![image](https://github.com/user-attachments/assets/90e2d750-6d97-4ab1-9180-198e945948b7)
