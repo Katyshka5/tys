@@ -14,19 +14,19 @@
 
 ▹ Устанавливаем утилиту wget
 
-СКРИНШОТ
+![image](https://github.com/user-attachments/assets/4a10e5dd-6f83-4270-8c8b-6b8c3c7751ce)
 
 ② `sudo wget -P /etc/yum.repos.d/ https://download.docker.com/linux/centos/docker-ce.repo`
 
 ▹ Скачиваем файл репозитория
 
-СКРИНШОТ
+![image](https://github.com/user-attachments/assets/62a98b7f-769f-4a1d-9dd1-ba8b2e5f9c5b)
 
 ③ `sudo yum install docker-ce docker-ce-cli containerd.io`
 
 ▹ Устанавливаем docker
 
-СКРИНШОТ
+![image](https://github.com/user-attachments/assets/eb9e7dfa-2bc2-4cea-84b3-c93d00db7db2)
 
 ④ `sudo systemctl enable docker --now`
 
@@ -41,13 +41,13 @@
 ▹ Объявление переменной COMVER, полученной в результате curl запроса, хранящей в себе номер последней
 версии Docker Compose
 
-СКРИНШОТ
+![image](https://github.com/user-attachments/assets/a71b5f57-d895-4e74-9c01-aa11dacc0bd2)
 
 ⑦ `sudo curl -L "https://github.com/docker/compose/releases/download/$COMVER/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose`                        
 
 ▹ Скачиваем скрипт docker-compose последней версии и помещаем его в каталог /usr/bin
 
-СКРИНШОТ
+![image](https://github.com/user-attachments/assets/ff9aa1f5-5964-4027-909c-c49adb8aab4d)
 
 ⑧ `sudo chmod +x /usr/bin/docker-compose`
 
@@ -57,7 +57,7 @@
 
 ▹ Проверка установленной версии Docker Compose.
 
-СКРИНШОТ
+![image](https://github.com/user-attachments/assets/658f7f17-eff6-4c1f-a8db-b5d9d73470d1)
 
 ▹ Можно скачать git прямо из командной строки прописав Y
 
@@ -65,7 +65,7 @@
 
 ▹ Выдаст ошибку и предложит скачать git, согласиться и продолжить
 
-СКРИНШОТ
+![image](https://github.com/user-attachments/assets/ad0d94ee-41f7-490b-8560-9ffbaaa16d5b)
 
 ①① `cd grafana_stack_for_docker`
     
@@ -99,9 +99,9 @@
 
 ▹ Команда создает и запускает контейнеры в фоновом режиме, используя конфигурацию из файла docker-compose.yml, с правами суперпользователя.
 
-СКРИНШОТ
+![image](https://github.com/user-attachments/assets/b5a2d557-f83d-48c6-946b-8cb0330de817)
 
-СКРИНШОТ
+![image](https://github.com/user-attachments/assets/07b2fed6-6853-46e3-aaa2-13374f9507ef)
 
 ①⑨ `sudo vi docker-compose.yaml`
 
@@ -113,9 +113,9 @@
 
 ▹ Что бы сохранить что-то в этом документе нажимаем Esc пишем :wq! В этом текставом редакторе мы должны поставить node-exporter после services
 
-СКРИНШОТ  
+![image](https://github.com/user-attachments/assets/bbeb8593-9dd2-44a0-9169-e7907f190f06)
 
-СКРИНШОТ
+![image](https://github.com/user-attachments/assets/ea435537-9cf0-4a7b-a258-f97692d51086)
 
 ②⓪ `sudo vi prometheus.yaml`
 
@@ -123,9 +123,9 @@
 
 ▹ /mnt/common_volume/swarm/grafana/config/prometheus.yaml - исправить targets: на exporter:9100,
 
-СКРИНШОТ
+![image](https://github.com/user-attachments/assets/9779ee9d-8d83-4159-8835-1436fdecb767)
 
-СКРИНШОТ
+![image](https://github.com/user-attachments/assets/c160b968-d1b4-4fd2-9d60-889ff1e3b877)
 
 GRAFANA
 
@@ -151,7 +151,7 @@ Authentication
   * Find and import dashboards for common applications at grafana.com/dashboards: 1860 //ждем кнопку Load
   * Select Prometheus ждем кнопку "Import"
       
- СКРИНШОТ
+ ![image](https://github.com/user-attachments/assets/e8fff791-49f6-48bb-b6a3-0e0272cbaec1)
 
 VictoriaMetrics
 
